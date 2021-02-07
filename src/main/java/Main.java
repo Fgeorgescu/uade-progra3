@@ -1,7 +1,7 @@
-import graphs.GrafoEstatico;
-import graphs.GrafosTDA;
-import graphs.algorithm.search.BFS;
+import graphs.algorithm.search.DFS;
+import visualization.JGraphXAdapterDemo;
 
+import javax.swing.*;
 import java.util.logging.Logger;
 
 public class Main {
@@ -9,9 +9,19 @@ public class Main {
     private static final Logger logger = Logger.getLogger("Main");
 
     public static void main(String[] args) {
-        logger.info("Hello world");
+        DFS.test();
+        //testVisualization();
+    }
 
-        GrafosTDA grafo = new GrafoEstatico();
-        BFS.search(grafo);
+    private static void testVisualization() {
+        JGraphXAdapterDemo applet = new JGraphXAdapterDemo();
+        applet.init();
+
+        JFrame frame = new JFrame();
+        frame.getContentPane().add(applet);
+        frame.setTitle("JGraphT Adapter to JGraphX Demo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 }

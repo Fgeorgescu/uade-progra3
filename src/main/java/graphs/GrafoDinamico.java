@@ -170,4 +170,8 @@ public class GrafoDinamico implements GrafosTDA {
 		return null;
 	}
 
+	@Override
+	public int[] adyacentes(int v) {
+		return new int[0];
+	}
 }

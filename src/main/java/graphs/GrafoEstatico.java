@@ -1,5 +1,7 @@
 package graphs;
 
+import java.util.Arrays;
+
 public class GrafoEstatico implements GrafosTDA {
 	
 	int indice ;
@@ -50,7 +52,7 @@ public class GrafoEstatico implements GrafosTDA {
 			System.out.println("No se encontro el vertice");
 		}	
 	}
-	
+
 	public void agregarArista(int v1, int v2, int peso) {
 		if(this.posicionDeNodo(v1) != -1 && this.posicionDeNodo(v2) != -1) {
 			matrizAdy[this.posicionDeNodo(v1)][this.posicionDeNodo(v2)] = peso;
@@ -165,6 +167,18 @@ public class GrafoEstatico implements GrafosTDA {
 	public int[] dephtFirstSearch() {
 		return null;
 	}
-	
-	
+
+	@Override
+	public int[] adyacentes(int v) {
+		int[] adyacentes = new int[dim];
+		int i = 0;
+		System.out.printf("Adyacentes para %s directamente desde la matriz: %s\n", v, Arrays.toString(matrizAdy[v]));
+		for (int candidate = 0 ; candidate < matrizAdy.length; candidate++) { //TODO: Cuidado, validar funcionamiento de matriz de adyacencia
+			if (matrizAdy[v][candidate] != 0) {
+				adyacentes[i] = candidate;
+				i++;
+			}
+		}
+		return adyacentes;
+	}
 }

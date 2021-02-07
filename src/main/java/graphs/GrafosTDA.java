@@ -29,6 +29,6 @@ public interface GrafosTDA {
 	public void imparAristas();
 	
 	public int[] dephtFirstSearch();
-	
-	
+
+	int[] adyacentes(int v);
 }
