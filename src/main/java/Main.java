@@ -1,3 +1,4 @@
+import graphs.algorithm.search.DFS;
 import visualization.JGraphXAdapterDemo;
 
 import javax.swing.*;
@@ -8,6 +9,11 @@ public class Main {
     private static final Logger logger = Logger.getLogger("Main");
 
     public static void main(String[] args) {
+        DFS.test();
+        //testVisualization();
+    }
+
+    private static void testVisualization() {
         JGraphXAdapterDemo applet = new JGraphXAdapterDemo();
         applet.init();
 
