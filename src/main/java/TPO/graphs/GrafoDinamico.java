@@ -1,6 +1,12 @@
-package graphs;
+package TPO.graphs;
+
+
+import TPO.utils.LoggerFactory;
+
+import java.util.logging.Logger;
 
 public class GrafoDinamico implements GrafosTDA {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 	NodoGrafo nodo;
 	int cantidad;
 

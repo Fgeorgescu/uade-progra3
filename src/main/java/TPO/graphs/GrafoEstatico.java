@@ -1,9 +1,14 @@
-package graphs;
+package TPO.graphs;
+
+import TPO.utils.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 public class GrafoEstatico implements GrafosTDA {
-	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
+
+
 	int indice ;
 	int[][] matrizAdy;
 	int dim ; 

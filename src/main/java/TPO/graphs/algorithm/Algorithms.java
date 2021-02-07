@@ -1,6 +1,6 @@
-package graphs.algorithm;
+package TPO.graphs.algorithm;
 
-import graphs.GrafosTDA;
+import TPO.graphs.GrafosTDA;
 
 public interface Algorithms {
     /**

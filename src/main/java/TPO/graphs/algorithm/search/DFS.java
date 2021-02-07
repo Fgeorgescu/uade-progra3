@@ -1,16 +1,16 @@
-package graphs.algorithm.search;
+package TPO.graphs.algorithm.search;
 
-import graphs.GrafoEstatico;
-import graphs.GrafosTDA;
-import graphs.algorithm.Algorithms;
+import TPO.graphs.GrafoEstatico;
+import TPO.graphs.GrafosTDA;
+import TPO.graphs.algorithm.Algorithms;
 
 import java.util.Arrays;
 import java.util.Random;
 
 public class DFS implements Algorithms {
-    private static final int MAX_DIM = 100;
+    private static final int MAX_DIM = 10;
     private static final int MAX_WEIGTH = 100; // Binario, o se conecta o no
-    private static final int RANDOMIZER_ITERATIONS = 10;
+    private static final int RANDOMIZER_ITERATIONS = 50;
     private static final int BLANCO = 0;
     private static final int GRIS = 1;
     private static final int NEGRO = 2;
@@ -28,6 +28,11 @@ public class DFS implements Algorithms {
     }
 
     public static int[] test() { //DFS_FOREST
+        marcas = new int[MAX_DIM];
+        p = new int [MAX_DIM];
+        d = new int [MAX_DIM];
+        f = new int [MAX_DIM];
+        t = 0;
 
         GrafosTDA g = new GrafoEstatico();
 
@@ -50,7 +55,6 @@ public class DFS implements Algorithms {
         System.out.println("t? = " + Arrays.toString(f));
 
         return p;
-        //System.out.println(Arrays.toString(g.vertices()));
     }
 
     //

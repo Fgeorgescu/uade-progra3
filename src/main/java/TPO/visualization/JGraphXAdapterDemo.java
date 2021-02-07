@@ -1,4 +1,4 @@
-package visualization;
+package TPO.visualization;
 
 import com.mxgraph.layout.mxCircleLayout;
 import com.mxgraph.swing.mxGraphComponent;
@@ -25,7 +25,7 @@ public class JGraphXAdapterDemo extends JApplet {
         ListenableGraph<String, DefaultEdge> g =
                 new DefaultListenableGraph<>(new DefaultDirectedGraph<>(DefaultEdge.class));
 
-        // create a visualization using JGraph, via an adapter
+        // create a TPO.visualization using JGraph, via an adapter
         jgxAdapter = new JGraphXAdapter<>(g);
 
         setPreferredSize(DEFAULT_SIZE);

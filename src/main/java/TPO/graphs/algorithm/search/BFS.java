@@ -1,6 +1,6 @@
-package graphs.algorithm.search;
+package TPO.graphs.algorithm.search;
 
-import graphs.GrafosTDA;
+import TPO.graphs.GrafosTDA;
 
 import java.util.logging.Logger;
 
