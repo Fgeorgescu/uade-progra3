@@ -35,8 +35,8 @@ public class Main {
         String menu = """
                 Ingrese el nro de la opción deseada:
                 \tAlgoritmos disponibles:
-                \t\t1) Algoritmo Breadth-First Search (BFS)
-                \t\t2) Algoritmo Depth-First Search (DFS)
+                \t\t1) Algoritmo Depth-First Search (DFS)
+                \t\t2) Algoritmo Breadth-First Search (BFS)
                 \t\tnotImplemented - Algoritmo de Prim
                 \t\tnotImplemented - Algoritmo de Kruskal
                 \t\tnotImplemented - Algoritmo de Dijsktra

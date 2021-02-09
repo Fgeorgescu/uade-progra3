@@ -9,8 +9,8 @@
 
 Implementar 2 de los siguientes algoritmos:
 
-- Algoritmo Breadth-First Search (BFS)
 - Algoritmo Depth-First Search (DFS)
+- Algoritmo Breadth-First Search (BFS)
 - Algoritmo de Prim
 - Algoritmo de Kruskal
 - Algoritmo de Dijsktra

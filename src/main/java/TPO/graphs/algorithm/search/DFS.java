@@ -84,25 +84,31 @@ public class DFS {
 
         t++;
         d[origen] = t;
-        logger.fine(String.format("Tiempo de inicio para el nodo %d: %d", origen, t));
         marcas[origen] = GRIS;
 
+        logger.fine(String.format("Tiempo de inicio para el nodo %d: %d", origen, t));
+
         int[] ady = g.adyacentes(origen);
+
         logger.finest(String.format("Adyacentes para %d: %s. %s", origen, Arrays.toString(ady), "Estas son las etiquetas de los nodos adyacentes (excluidos los -1)."));
+
         for (int i = 0 ; i < ady.length && ady[i] != -1 ; i++) { //Con el 1er -1, sale ya que no hay más adyacentes
             int candidate = ady[i];
+
             logger.finer(String.format("Analizando el nodo %d, adyacente al nodo origen %d", candidate, origen));
+
             if(marcas[candidate] == BLANCO) {
+                logger.finer(String.format("El candidato %d está marcado como blando, vamos a profundizar", candidate));
                 p[candidate] = origen;
                 dfs(g, candidate);
             }
         }
+
         marcas[origen] = NEGRO;
         t++;
         f[origen] = t;
 
         logger.fine(String.format("Tiempo de fin para el nodo %d: %d", origen, t));
-
     }
 
     /**
