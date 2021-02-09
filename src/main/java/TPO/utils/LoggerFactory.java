@@ -5,6 +5,10 @@ import java.io.InputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+/**
+ * Example: https://www.logicbig.com/tutorials/core-java-tutorial/logging/levels.html
+ *
+ */
 public class LoggerFactory {
 
     public static Logger getLogger(String className) {

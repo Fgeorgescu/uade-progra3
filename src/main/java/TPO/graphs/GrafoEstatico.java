@@ -70,10 +70,19 @@ public class GrafoEstatico implements GrafosTDA {
 		int[] aux = new int[indice];
 		for(int i = 0; i < indice; i++) {
 			aux[i] = etiquetas[i];
+			//System.out.print(aux[i] + "\t");
+		}
+		//System.out.println();
+		return aux;
+	}
+
+	public void imprimirVertices() {
+		int[] aux = new int[indice];
+		for(int i = 0; i < indice; i++) {
+			aux[i] = etiquetas[i];
 			System.out.print(aux[i] + "\t");
 		}
 		System.out.println();
-		return aux;
 	}
 	
 	
@@ -102,7 +111,7 @@ public class GrafoEstatico implements GrafosTDA {
 	
 	public void mostrarMatriz() {
 		System.out.print("\t");
-		this.vertices();
+		this.imprimirVertices();
 		System.out.println();
 		for(int i = 0; i < indice; i++) {
 			System.out.print(etiquetas[i] + "\t");
@@ -176,9 +185,10 @@ public class GrafoEstatico implements GrafosTDA {
 	@Override
 	public int[] adyacentes(int v) {
 		int[] adyacentes = new int[dim];
+		Arrays.fill(adyacentes, -1);
 		int i = 0;
-		System.out.printf("Adyacentes para %s directamente desde la matriz: %s\n", v, Arrays.toString(matrizAdy[v]));
-		for (int candidate = 0 ; candidate < matrizAdy.length; candidate++) { //TODO: Cuidado, validar funcionamiento de matriz de adyacencia
+
+		for (int candidate = 0 ; candidate < matrizAdy.length; candidate++) {
 			if (matrizAdy[v][candidate] != 0) {
 				adyacentes[i] = candidate;
 				i++;

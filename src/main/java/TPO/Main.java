@@ -1,31 +1,21 @@
 package TPO;
 
 import TPO.graphs.algorithm.search.DFS;
-import TPO.utils.LoggerFactory;
 import TPO.visualization.JGraphXAdapterDemo;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 public class Main {
 
-    private static final Logger logger = LoggerFactory.getLogger(Main.class.getSimpleName());
-
-
-
-    public static void main(String[] args) throws IOException {
-        //showMenu();
-        logger.info("in MyClass");
-        logger.warning("a test warning");
-        logger.fine("test");
-
-        // DFS.test();
-        // testVisualization();
+    public static void main(String[] args) {
+        showMenu();
     }
 
+    /**
+     * Prueba de la librería JGraphX
+     */
     private static void testVisualization() {
         JGraphXAdapterDemo applet = new JGraphXAdapterDemo();
         applet.init();
@@ -38,6 +28,9 @@ public class Main {
         frame.setVisible(true);
     }
 
+    /**
+     * Muestra
+     */
     private static void showMenu() {
         String menu = """
                 Ingrese el nro de la opción deseada:
@@ -55,9 +48,10 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
         int opt = -1;
+
         //Menu loop, se ejecuta hasta que ingresen 0
         do {
-            System.out.println(menu);;
+            System.out.println(menu);
 
             try {
                 opt = scan.nextInt();
@@ -67,7 +61,7 @@ public class Main {
             }
 
             switch (opt) {
-                case 1 -> DFS.test();
+                case 1 -> DFS.execute();
                 case 2 -> System.out.println("Implementación de BFS");
                 case 0 -> {}
                 case -1 -> System.out.println("Usá el nro de la opción como input, debe ser un int");
