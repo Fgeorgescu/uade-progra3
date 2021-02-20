@@ -51,7 +51,27 @@ Los niveles que recomendamos tener en cuenta son:
 [2021-02-08 22:53:05] [FINE   ] Se inicia el método dfs recursivo para el nodo 1 
 ```
 
+## Estructura general del proyecto
+Este proyecto utiliza la consola como interfaz del usuario. Al correr el mismo, se va a mostrar un menú con las distintas opciones de algoritmos a probar.
+
+Si bien intentamos unificar el estilo de los algoritmos para facilitar su lectura, se detalla más abajo (en cada uno de los subtitulos correspondientes) las pequiliaridades a tener en cuenta para cada uno de ellos.
+
+A nivel general, cada algoritmo consta de una clase llamada como el algoritmo en cuestion, y tiene un método púbilco `.execute()`, el cual contiene la lógica inicial del mismo. Esto puede referirse a:
+- Selección del grafo a usar
+- Definición de parámetros o variables para trabajar
+- Instanciamiento de las clases necesarias
+
+A continuación detallamos la información relevante para los tres algoritmos que seleccionamos. Estos son DFS, Kruskal y Dijkstra
+
+--- 
 ## DFS
+
+### Premisas
+Este algoritmo funciona para grafos dirigidos, conexos o no, con peso o no.
+
+> Con estas caracteristicas, soportamos la generación de grafos aleatorios
+
+### Implementación de GrafoTDA
 
 Para esta implementación, usamos GráficoEstático. La misma se basa en una matriz de adyacencia para registrar los vértices entre los nodos.
 
@@ -92,3 +112,43 @@ Constantes:
 - **DIM**: Cantidad de nodos / dimensión de la matriz.
 - **MAX_WEIGTH**: Peso máximo de una arista. Si bien no altera el funcionamiento del algoritmo, con numeros más bajos es menos probable que aparezcan aristas en el randomizado.
 - **RANDOMIZER_ITERATIONS**: Cantidad de veces que se generan aristas al azar. Un valor alto nos dará un grafo con más aristas entre sus nodos.
+
+### Salida
+
+Mostramos un ejemplo de 10 vértices, identificados por los valores 0...9. En los elementos de respuesta, la posición i en el vector indica el vertice al que hacemos referencia
+
+```shell
+[2021-02-19 14:09:46] [INFO   ] Se analizaron todos los nodos, acá están los resultados: 
+[2021-02-19 14:09:46] [INFO   ] Predecesores = [-1, 0, 1, 7, 6, 2, 7, 5, 4, 0] 
+[2021-02-19 14:09:46] [INFO   ] d? = [1, 2, 3, 6, 9, 4, 8, 5, 10, 18] 
+[2021-02-19 14:09:46] [INFO   ] t? = [20, 17, 16, 7, 12, 15, 13, 14, 11, 19] 
+```
+- Predecesores: Array de predecesores. El elemento [i] representa el ID del elemento predecesor. 
+- d: Tiempo final de la iteración. Nos sirve para validar la recursividad. 
+- t: Tiempo final de la iteración. Nos sirve para validar la recursividad
+
+Viendo un poco el ejemplo, podemos ver que:
+- 0 -> 1 -> 2 -> 5 -> 7
+- 3 -> 7 -> 6 -> 4 -> 8
+
+--- 
+### Kruskal
+
+#### Implementación de GrafoTDA
+
+--- 
+### Dijsktra
+
+#### Implementación de GrafoTDA
+
+Para esta implementación, utilizamos la librería JGraphT. Esta ofrece muchas funcionalidades, desde la creación de muchos tipos de grafos, hasta la visualización de los mismos por medio de un adapter de Swing. Por esta última funcionalidad decidimos desarrollar los grafos con esta librería. Nos permite, inclusive, mostrar el grafo en tiempo real mientras se crea e itera, pero requiere tiempo para poder implementarlo correctamente, por lo que queda en segundo plano.
+
+Nota: Esta librería ofrece muchas opciones para recorrer un grafo con muchas estrategias, como DFS o BFS. Vamos a **evitar** usar cualquiera de estas herramientas, para apegarnos lo más posible a las implementaciones vistas en clase. 
+
+> Aún no implementamos la visualización del grafo
+
+##### JGraph
+
+Como obtener el peso de una arista dados los vertices: `g.getEdgeWeight(g.getEdge("v1", "v2"))`
+
+Como Dijkstra soporta grafos conexos dirigidos y con peso, vamos a usar la estructura [estructura](!Docu) 

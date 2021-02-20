@@ -1,8 +1,10 @@
-package TPO.graphs;
+package TPO.graphImpl;
 
 import TPO.utils.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class GrafoEstatico implements GrafosTDA {
@@ -195,5 +197,19 @@ public class GrafoEstatico implements GrafosTDA {
 			}
 		}
 		return adyacentes;
+	}
+
+	public List<Arista> aristas() { // O(n^2)
+		List<Arista> aristas = new LinkedList<>();
+
+		for (int i = 0; i < matrizAdy.length ; i ++) {
+			for (int j = 0; j < matrizAdy[i].length ; j ++) {
+				if (matrizAdy[i][j] != 0) {
+					aristas.add(new Arista(i, j, matrizAdy[i][j]));
+				}
+			}
+
+		}
+		return aristas;
 	}
 }

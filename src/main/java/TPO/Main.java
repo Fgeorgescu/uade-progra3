@@ -1,9 +1,9 @@
 package TPO;
 
-import TPO.graphs.algorithm.search.DFS;
-import TPO.visualization.JGraphXAdapterDemo;
+import TPO.DFS.DFS;
+import TPO.dijsktra.Dijsktra;
+import TPO.kruskal.Kruskal;
 
-import javax.swing.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -14,33 +14,21 @@ public class Main {
     }
 
     /**
-     * Prueba de la librería JGraphX
-     */
-    private static void testVisualization() {
-        JGraphXAdapterDemo applet = new JGraphXAdapterDemo();
-        applet.init();
-
-        JFrame frame = new JFrame();
-        frame.getContentPane().add(applet);
-        frame.setTitle("JGraphT Adapter to JGraphX Demo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    /**
-     * Muestra
+     * Muestra el menú y corre el algoritmo seleccionado
      */
     private static void showMenu() {
+        DFS dfs = new DFS();
+        Kruskal kruskal = new Kruskal();
+        Dijsktra dijkstra = new Dijsktra();
+
+
+
         String menu = """
                 Ingrese el nro de la opción deseada:
                 \tAlgoritmos disponibles:
                 \t\t1) Algoritmo Depth-First Search (DFS)
-                \t\t2) Algoritmo Breadth-First Search (BFS)
-                \t\tnotImplemented - Algoritmo de Prim
-                \t\tnotImplemented - Algoritmo de Kruskal
-                \t\tnotImplemented - Algoritmo de Dijsktra
-                \t\tnotImpelemnted - Algoritmo de Floyd
+                \t\t2) Algoritmo de Kruskal
+                \t\t3) Algoritmo de Dijsktra
                 
                 \t\t0) Salir
                 """;
@@ -49,7 +37,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         int opt = -1;
 
-        //Menu loop, se ejecuta hasta que ingresen 0
+        // Menu loop, se ejecuta hasta que ingresen 0
         do {
             System.out.println(menu);
 
@@ -61,8 +49,9 @@ public class Main {
             }
 
             switch (opt) {
-                case 1 -> DFS.execute();
-                case 2 -> System.out.println("Implementación de BFS");
+                case 1 -> dfs.execute();
+                case 2 -> kruskal.execute();
+                case 3 -> dijkstra.execute("v1");
                 case 0 -> {}
                 case -1 -> System.out.println("Usá el nro de la opción como input, debe ser un int");
                 default -> System.out.println("Input inválido. Por favor usar el número de la opción");

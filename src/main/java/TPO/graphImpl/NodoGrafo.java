@@ -1,4 +1,4 @@
-package TPO.graphs;
+package TPO.graphImpl;
 
 /**
  *

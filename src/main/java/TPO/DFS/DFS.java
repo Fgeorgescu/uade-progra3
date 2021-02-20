@@ -1,8 +1,7 @@
-package TPO.graphs.algorithm.search;
+package TPO.DFS;
 
-import TPO.graphs.GrafoEstatico;
-import TPO.graphs.GrafosTDA;
-import TPO.graphs.algorithm.Algorithms;
+import TPO.graphImpl.GrafoEstatico;
+import TPO.graphImpl.GrafosTDA;
 import TPO.utils.LoggerFactory;
 
 import java.util.Arrays;
@@ -15,24 +14,31 @@ public class DFS {
 
     private static final Logger logger = LoggerFactory.getLogger("DFS");
 
-    private static final int MAX_DIM = 10;
-    private static final int MAX_WEIGTH = 100; // Binario, o se conecta o no
-    private static final int RANDOMIZER_ITERATIONS = 50;
+    private int MAX_DIM = 10;
+    private int MAX_WEIGTH = 100; // Binario, o se conecta o no
+    private int RANDOMIZER_ITERATIONS = 50;
 
     // No modificar debajo de este comentario
-    private static final int BLANCO = 0;
-    private static final int GRIS = 1;
-    private static final int NEGRO = 2;
+    private final int BLANCO = 0;
+    private final int GRIS = 1;
+    private final int NEGRO = 2;
 
-    static int[] marcas = new int[MAX_DIM];
-    static int[] p = new int [MAX_DIM];
-    static int[] d = new int [MAX_DIM];
-    static int[] f = new int [MAX_DIM];
-    static int t = 0;
+    private int[] marcas = new int[MAX_DIM];
+    private int[] p = new int [MAX_DIM];
+    private int[] d = new int [MAX_DIM];
+    private int[] f = new int [MAX_DIM];
+    private int t = 0;
 
+    public DFS() {
+    }
 
+    public DFS(int MAX_DIM, int MAX_WEIGTH, int RANDOMIZER_ITERATIONS) {
+        this.MAX_DIM = MAX_DIM;
+        this.MAX_WEIGTH = MAX_WEIGTH;
+        this.RANDOMIZER_ITERATIONS = RANDOMIZER_ITERATIONS;
+    }
 
-    public static int[] execute() {
+    public void execute() {
         logger.finest("Iniciamos la ejecución del algorítmo DFS");
 
         marcas = new int[MAX_DIM];
@@ -50,12 +56,13 @@ public class DFS {
 
         logger.info("Mostramos la matriz: ");
         g.mostrarMatriz();
-        try { //Sleep para que se imprima la matriz en consola
+        try { // Sleep para que se imprima la matriz en consola
             sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace(); //No debería romper
         }
-        //Marcamos todos los nodos como BLANCO, y dejamos como -1 todos los predecesores
+
+        // Marcamos todos los nodos como BLANCO, y dejamos como -1 todos los predecesores
         for( int i = 0; i < g.vertices().length; i++) {
             logger.finest(String.format("Setteando como blanco y con predecesor -1 el nodo %d", i));
             marcas[i] = BLANCO;
@@ -70,16 +77,16 @@ public class DFS {
                 dfs(g, i);
             }
         }
+
         logger.info("Se analizaron todos los nodos, acá están los resultados:");
         logger.info("Predecesores = " + Arrays.toString(p));
         logger.info("d? = " + Arrays.toString(d));
         logger.info("t? = " + Arrays.toString(f));
 
-        return p;
     }
 
     //
-    private static void dfs(GrafosTDA g, int origen) {
+    private void dfs(GrafosTDA g, int origen) {
         logger.fine(String.format("Se inicia el método dfs recursivo para el nodo %d", origen));
 
         t++;
@@ -115,7 +122,7 @@ public class DFS {
      * Se numeran los vertices de 1 a MAX_DIM
      * @param g
      */
-    private static void randomizeGraph(GrafosTDA g) {
+    private void randomizeGraph(GrafosTDA g) {
         Random r = new Random();
 
         g.inicializarGrafo(MAX_DIM);

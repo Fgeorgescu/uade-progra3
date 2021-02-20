@@ -1,6 +1,4 @@
-package TPO.graphs;
-
-import java.util.Comparator;
+package TPO.graphImpl;
 
 public class NodoArista implements Comparable<NodoArista>{
 	int peso;
