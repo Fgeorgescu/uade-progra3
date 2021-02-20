@@ -149,6 +149,6 @@ Nota: Esta librería ofrece muchas opciones para recorrer un grafo con muchas es
 
 ##### JGraph
 
-Como obtener el peso de una arista dados los vertices: `g.getEdgeWeight(g.getEdge("v1", "v2"))`
+Como obtener el ppeso de una arista dados los vertices: `g.getEdgeWeight(g.getEdge("v1", "v2"))`
 
 Como Dijkstra soporta grafos conexos dirigidos y con peso, vamos a usar la estructura [estructura](!Docu) 
