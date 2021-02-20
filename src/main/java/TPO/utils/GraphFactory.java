@@ -19,14 +19,14 @@ public class GraphFactory {
         final String v3 = "v3";
         final String v4 = "v4";
 
-        // add the vertices to our graph
+        // Add the vertices to our graph
         g.addVertex(v1);
         g.addVertex(v2);
         g.addVertex(v3);
         g.addVertex(v4);
 
 
-        //Add edges and weights. Default weight is 1.0
+        // Add edges and weights. Default weight is 1.0
         g.addEdge(v1,v2);
         g.setEdgeWeight(v1, v2, 10.0);
 
