@@ -15,4 +15,9 @@ public class Arista implements Comparable<Arista> {
     public int compareTo(Arista o) {
         return Integer.compare(peso, o.peso);
     }
+
+    @Override
+    public String toString() {
+        return String.format("(%d:%d) - %d", origen, destino, peso);
+    }
 }

@@ -210,6 +210,7 @@ public class GrafoEstatico implements GrafosTDA {
 			}
 
 		}
+
 		return aristas;
 	}
 }

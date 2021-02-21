@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 public class Dijsktra extends JApplet{
 
     private static final Double INFINITO = -1.0;
+    private static final String DESCONOCIDO = "unknown";
 
     private static final Logger logger = LoggerFactory.getLogger(Dijsktra.class.getSimpleName());
 
@@ -41,11 +42,12 @@ public class Dijsktra extends JApplet{
             logger.finer("Agregamos " + vertice + " a la cola, y ponemos los valores -1 y \"\" en distancia y previo");
             q.add(vertice);
             dist.put(vertice, INFINITO);
-            prev.put(vertice, "");
+            prev.put(vertice, DESCONOCIDO);
         }));
 
         logger.info("Definimos la distancia a nuestro origen " + source + " como 0.0");
         dist.replace(source, 0.0);
+        prev.replace(source, "origen");
 
 
         while (!q.isEmpty()) {

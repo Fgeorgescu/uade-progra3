@@ -1,5 +1,6 @@
 package TPO.utils;
 
+import TPO.graphImpl.GrafoEstatico;
 import TPO.graphImpl.GrafosTDA;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultWeightedEdge;
@@ -53,6 +54,23 @@ public class GraphFactory {
         return g;
     }
 
+    public static GrafoEstatico generarGrafoTDA1() {
+        final int dim = 4;
+        GrafoEstatico g = new GrafoEstatico();
+        g.inicializarGrafo(dim);
+
+        for (int i = 0 ; i < dim; i++) {
+            g.agregarVertice(i);
+        }
+
+        g.agregarArista(0,1,10);
+        g.agregarArista(1,0,10);
+        g.agregarArista(1,2,10);
+        g.agregarArista(2,3,10);
+        g.agregarArista(3,0,10);
+
+        return g;
+    }
 
     /**
      * Se numeran los vertices de 1 a MAX_DIM
