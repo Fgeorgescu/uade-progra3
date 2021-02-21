@@ -22,7 +22,7 @@ public class Dijsktra extends JApplet{
     private static final Logger logger = LoggerFactory.getLogger(Dijsktra.class.getSimpleName());
 
     public void execute(String source) {
-        logger.info("Iniciamos la búsqueda del camino mínimo con ");
+        logger.info("Iniciamos la búsqueda del camino mínimo con Dijkstra");
         Graph<String, DefaultWeightedEdge> stringGraph = GraphFactory.generateGraph1();
 
         logger.info("Tenemos el grafo: " + stringGraph.toString());

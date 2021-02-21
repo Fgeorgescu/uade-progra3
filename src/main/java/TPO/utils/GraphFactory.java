@@ -1,10 +1,17 @@
 package TPO.utils;
 
+import TPO.graphImpl.GrafosTDA;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 
+import java.util.Random;
+
 public class GraphFactory {
+
+    private static final int MAX_DIM = 10;
+    private static final int MAX_WEIGTH = 100; // Binario, o se conecta o no
+    private static final int RANDOMIZER_ITERATIONS = 50;
 
     /**
      * <a href="{@docRoot}/assets/graphs/Graph1.png"> Image </a>
@@ -44,5 +51,23 @@ public class GraphFactory {
 
 
         return g;
+    }
+
+
+    /**
+     * Se numeran los vertices de 1 a MAX_DIM
+     * @param g
+     */
+    public static void randomizeGraph(GrafosTDA g) {
+        Random r = new Random();
+
+        g.inicializarGrafo(MAX_DIM);
+        for (int i = 0 ; i < MAX_DIM; i++) {
+            g.agregarVertice(i);
+        }
+
+        for ( int i = 0; i < RANDOMIZER_ITERATIONS ; i++) {
+            g.agregarArista(r.nextInt(MAX_DIM), r.nextInt(MAX_DIM),r.nextInt(MAX_WEIGTH));
+        }
     }
 }

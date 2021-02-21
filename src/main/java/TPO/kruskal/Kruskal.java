@@ -3,6 +3,7 @@ package TPO.kruskal;
 import TPO.graphImpl.Arista;
 import TPO.graphImpl.GrafoEstatico;
 import TPO.graphImpl.GrafosTDA;
+import TPO.utils.GraphFactory;
 import TPO.utils.LoggerFactory;
 
 import java.util.*;
@@ -12,23 +13,28 @@ public class Kruskal {
 
     private static final Logger logger = LoggerFactory.getLogger("Kruskal");
 
-    private static final int MAX_DIM = 10;
-    private static final int MAX_WEIGTH = 100; // Binario, o se conecta o no
-    private static final int RANDOMIZER_ITERATIONS = 50;
+
 
     public void execute() {
-
-        // TODO validar conexo
+        logger.info("Iniciamos la ejecución del algoritmo de Kruskal.");
         GrafoEstatico g = new GrafoEstatico();
 
-        randomizeGraph(g);
+        GraphFactory.randomizeGraph(g);
+        logger.finer("Grafo generado");
 
+        logger.finer("Inicializamos la lista de solución");
         List<Arista> solución = new LinkedList<>();
 
-
+        logger.finer("Obtenemos los vértices del grafo para generar nuestro bosque");
         int[] bosque = g.vertices();
+
+        logger.fine("Nuestro bosque es " + Arrays.toString(bosque));
+
+        logger.finer("Obtenemos las aristas del grafo para generar nuestro array, las cuales ordenamos por peso (de menor a mayor)");
         List<Arista> aristas = g.aristas();
+        logger.fine("Nuestras aristas sin ordenar son: " + aristas.toString());
         aristas.sort(Comparator.naturalOrder()); // n log(n)
+        logger.fine("Nuestras aristas luego de ordenarlas son: " + aristas.toString());
 
         Set<Integer> conjuntos = new HashSet<>();
 
@@ -45,24 +51,4 @@ public class Kruskal {
             }
         }
     }
-
-
-    /**
-     * Se numeran los vertices de 1 a MAX_DIM
-     * @param g
-     */
-    private static void randomizeGraph(GrafosTDA g) {
-        Random r = new Random();
-
-        g.inicializarGrafo(MAX_DIM);
-        for (int i = 0 ; i < MAX_DIM; i++) {
-            g.agregarVertice(i);
-        }
-
-        for ( int i = 0; i < RANDOMIZER_ITERATIONS ; i++) {
-            g.agregarArista(r.nextInt(MAX_DIM), r.nextInt(MAX_DIM),r.nextInt(MAX_WEIGTH));
-        }
-    }
-
-
 }
