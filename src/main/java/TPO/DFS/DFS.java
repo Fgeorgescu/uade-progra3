@@ -3,7 +3,6 @@ package TPO.DFS;
 import TPO.graphImpl.GrafoEstatico;
 import TPO.graphImpl.GrafosTDA;
 import TPO.utils.LoggerFactory;
-import TPO.visualization.Printer;
 
 import java.util.Arrays;
 import java.util.HashMap;

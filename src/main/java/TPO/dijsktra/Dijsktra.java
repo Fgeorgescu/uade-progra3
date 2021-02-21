@@ -2,16 +2,9 @@ package TPO.dijsktra;
 
 import TPO.utils.GraphFactory;
 import TPO.utils.LoggerFactory;
-import TPO.visualization.JGraphXAdapterDemo;
-import com.mxgraph.layout.mxCircleLayout;
-import com.mxgraph.swing.mxGraphComponent;
 import org.jgrapht.Graph;
-import org.jgrapht.ext.JGraphXAdapter;
-import org.jgrapht.graph.*;
+import org.jgrapht.graph.DefaultWeightedEdge;
 
-import javax.swing.*;
-import java.awt.*;
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.*;
 import java.util.logging.Logger;
 
