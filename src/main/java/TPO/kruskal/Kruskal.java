@@ -2,10 +2,8 @@ package TPO.kruskal;
 
 import TPO.graphImpl.Arista;
 import TPO.graphImpl.GrafoEstatico;
-import TPO.graphImpl.GrafosTDA;
 import TPO.utils.GraphFactory;
 import TPO.utils.LoggerFactory;
-import TPO.visualization.Printer;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -17,14 +15,14 @@ public class Kruskal {
     public void execute() {
         logger.info("Iniciamos la ejecución del algoritmo de Kruskal.");
 
-        List<Integer> previos = new ArrayList<>();
+        List<String> aristasSolucion = new ArrayList<>();
         List<Integer> peso = new ArrayList<>();
 
         GrafoEstatico g = GraphFactory.generarGrafoTDA1();
         logger.finer("Grafo generado");
 
         logger.finer("Inicializamos el set de soluciones");
-        Solucion<Integer> conjuntos = new Solucion<>();
+        Conjuntos<Integer> conjuntos = new Conjuntos<>();
 
         logger.finer("Obtenemos los vértices del grafo para generar nuestro bosque");
         int[] bosque = g.vertices();
@@ -57,7 +55,12 @@ public class Kruskal {
                         aristas.get(i).origen,
                         aristas.get(i).destino)
                 );
-                previos.add(aristas.get(i).origen);
+
+                aristasSolucion.add(String.format("(%d:%d) - %d",
+                        aristas.get(i).origen,
+                        (aristas.get(i).destino),
+                        aristas.get(i).peso)
+                );
 
                 conjuntos.joinGroups(aristas.get(i).origen, aristas.get(i).destino);
             } else {
@@ -74,7 +77,6 @@ public class Kruskal {
             i++;
         }
 
-        logger.info("Terminamos de analizar todas las aristas posibles. Soluciones:");
-        Printer.printPreviosArray(previos);
+        logger.info("Las aristas que conforman la solución son: " + aristasSolucion);
     }
 }

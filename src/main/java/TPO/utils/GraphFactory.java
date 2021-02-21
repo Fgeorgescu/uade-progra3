@@ -64,6 +64,7 @@ public class GraphFactory {
         }
 
         g.agregarArista(0,1,10);
+        g.agregarArista(0,1,1);
         g.agregarArista(1,0,10);
         g.agregarArista(1,2,10);
         g.agregarArista(2,3,10);

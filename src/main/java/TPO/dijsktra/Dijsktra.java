@@ -15,7 +15,7 @@ import java.lang.management.PlatformLoggingMXBean;
 import java.util.*;
 import java.util.logging.Logger;
 
-public class Dijsktra extends JApplet{
+public class Dijsktra {
 
     private static final Double INFINITO = -1.0;
     private static final String DESCONOCIDO = "unknown";
@@ -31,7 +31,7 @@ public class Dijsktra extends JApplet{
         Queue<String> q = new ArrayDeque<>();
 
         logger.finer("Inicializamos las estructuras auxiliares, distancia y previo");
-        Map<String, Double> dist = new HashMap<>(); //Hashmap does not allow duplicated keys,
+        Map<String, Double> distanciaAcumulada = new HashMap<>(); //Hashmap does not allow duplicated keys,
         Map<String, String> prev = new HashMap<>();
 
         logger.finer("Buscamos todos los vértices");
@@ -41,13 +41,13 @@ public class Dijsktra extends JApplet{
         verticesSet.forEach((vertice -> {
             logger.finer("Agregamos " + vertice + " a la cola, y ponemos los valores -1 y \"\" en distancia y previo");
             q.add(vertice);
-            dist.put(vertice, INFINITO);
+            distanciaAcumulada.put(vertice, INFINITO);
             prev.put(vertice, DESCONOCIDO);
         }));
 
         logger.info("Definimos la distancia a nuestro origen " + source + " como 0.0");
-        dist.replace(source, 0.0);
-        prev.replace(source, "origen");
+        distanciaAcumulada.replace(source, 0.0);
+        prev.replace(source, "origen (" + source + ")");
 
 
         while (!q.isEmpty()) {
@@ -69,10 +69,10 @@ public class Dijsktra extends JApplet{
                         destino,
                         pesoArista,
                         verticeActual,
-                        dist.get(verticeActual))
+                        distanciaAcumulada.get(verticeActual))
                 );
 
-                double pesoCaminoHastaDestino = dist.get(verticeActual) + pesoArista;
+                double pesoCaminoHastaDestino = distanciaAcumulada.get(verticeActual) + pesoArista;
                  logger.fine(String.format("El peso acumulado desde el origen pasando por (%s:%s) sería %f",
                          verticeActual,
                          destino,
@@ -81,11 +81,11 @@ public class Dijsktra extends JApplet{
 
                 // Si el peso hasta el destino, reemplazo el peso y el antecesor por los valores correspondientes
                 // Peso == -1
-                 if (dist.get(destino).equals(INFINITO) || pesoCaminoHastaDestino < dist.get(destino)) {
+                 if (distanciaAcumulada.get(destino).equals(INFINITO) || pesoCaminoHastaDestino < distanciaAcumulada.get(destino)) {
                     logger.fine(String.format("El nuevo peso para %s es mejor que el existente (%f < %s)",
                             destino,
                             pesoCaminoHastaDestino,
-                            dist.get(destino).equals(INFINITO) ? "Infinito" : dist.get(destino))
+                            distanciaAcumulada.get(destino).equals(INFINITO) ? "Infinito" : distanciaAcumulada.get(destino))
                     );
 
                     logger.fine(String.format("Actualizamos el peso hasta el vertice %s por %f",
@@ -93,7 +93,7 @@ public class Dijsktra extends JApplet{
                             pesoCaminoHastaDestino)
                     );
 
-                    dist.put(destino, pesoCaminoHastaDestino);
+                     distanciaAcumulada.put(destino, pesoCaminoHastaDestino);
                     logger.fine(String.format("Actualizamos el previo del destino %s por el vertice actual %s",
                             destino,
                             verticeActual)
@@ -104,14 +104,18 @@ public class Dijsktra extends JApplet{
                      logger.fine(String.format("El nuevo peso para %s es peor que el existente (%f > %s)",
                              destino,
                              pesoCaminoHastaDestino,
-                             dist.get(destino).equals(INFINITO) ? "Infinito" : dist.get(destino))
+                             distanciaAcumulada.get(destino).equals(INFINITO) ? "Infinito" : distanciaAcumulada.get(destino))
                      );
 
                  }
             }); // https://stackoverflow.com/questions/30876939/getting-all-edges-going-out-from-a-node-in-jgrapht
         }
 
-        logger.info(dist.toString());
-        logger.info(prev.toString());
+        logger.info("Distancias acumuladas partiendo de " +source+ ": " + distanciaAcumulada.toString());
+        prev.forEach((k,v) -> {
+            if (v.contains("origen")) logger.info("Origen: " + k);
+            else logger.info(v + " -> " + k);
+        });
+
     }
 }
