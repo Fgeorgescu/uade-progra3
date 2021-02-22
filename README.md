@@ -7,7 +7,7 @@
 
 ## Consigna
 
-Implementar 2 de los siguientes algoritmos:
+Implementar 3 de los siguientes algoritmos:
 
 - Algoritmo Depth-First Search (DFS)
 - Algoritmo Breadth-First Search (BFS)
@@ -16,6 +16,7 @@ Implementar 2 de los siguientes algoritmos:
 - Algoritmo de Dijsktra
 - Algoritmo de Floyd
 
+> Se implementa: Algoritmo Depth-First Search (DFS), Kruskal y Dijkstra
 
 ## Log level
 
