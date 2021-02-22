@@ -46,13 +46,6 @@ public class Dijsktra {
             distanciaAcumulada.put(vertice, INFINITO);
             prev.put(vertice, DESCONOCIDO);
         }
-        /*verticesSet.forEach((vertice -> {
-            logger.finer("Agregamos " + vertice + " a la cola, y ponemos los valores -1 y \"\" en distancia y previo");
-            q.add(vertice);
-            distanciaAcumulada.put(vertice, INFINITO);
-            prev.put(vertice, DESCONOCIDO);
-        }));*/
-
 
         logger.info("Definimos la distancia a nuestro origen " + source + " como 0.0");
         distanciaAcumulada.replace(source, 0.0);

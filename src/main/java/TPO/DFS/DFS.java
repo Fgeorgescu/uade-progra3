@@ -75,7 +75,7 @@ public class DFS {
             logger.finest(String.format("Analizando el nodo %d en el loop de dfs forest", i));
             if (marcas[i] == BLANCO) {
                 logger.fine(String.format("El nodo %d es BLANCO, vamos a profundizar el mismo. Llamando al método DFS", i));
-                dfs(g, i); //Recursivo
+                dfs(g, i); // Recursivo
             }
         }
 

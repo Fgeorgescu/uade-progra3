@@ -20,15 +20,17 @@ Implementar 3 de los siguientes algoritmos:
 
 ## Log level
 
+Por defecto, la configuración que está en el repo es `FINEST`. Esto nos muestra el paso a paso del algoritmo.
+
 Se puede cambiar el log level para tener un mayor o menor feedback de lo que ocurre mientras se ejecuta el algoritmo.
 > Para cambiar el log level modificar las líneas 2 y 3 del archivo logging.properties en `src/main/resources`
 
 Los niveles que recomendamos tener en cuenta son:
 
-- INFO: Muestra mensajes importantes y warnings
-- FINE: Muestra detalles de debuggeo, como cuando se inician un método o se termina el mismo, se inicia un loop, etc)
+- INFO: Muestra mensajes importantes y warnings, y la salida.
+- FINE: Muestra detalles, como cuando se inician un método o se termina el mismo, se inicia un loop, etc)
 - FINER: Muestra mucho más detalle. Esto se incluirá en loops que sean de una profundidad mayor (for dentro de un for, por ejemplo)
-- FINEST: Muestra TODO. **Usar bajo su propio riesgo...**
+- FINEST: Muestra TODO.
 
 ### Ejemplo de FINEST
 
