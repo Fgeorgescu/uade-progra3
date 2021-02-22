@@ -162,25 +162,29 @@ Para esta implementación, usamos GráficoEstático como en el caso DFS.
 
 La misma se basa en una matriz de adyacencia para registrar los vértices entre los nodos.
 
+En este caso, si bien importa el peso, *no importa la dirección*. Por este motivo, para aprovechar la implementación que dan en clase, solamente sumamos la arista de un vértice al otro.
+Por este motivo, cuando se dan de alta aristas, se hace de un **vertice de menor valor a uno de mayor** (Siendo el valor el int que los representa).
 
-### Configuración
 
-Podremos encontrar dos clases para trabajar el algoritmo de Kruskal
+### Registro de nodos unidos
 
-En primer lugar la clase Kruskal donde inicializaremos la ejecución del algoritmo, y podremos ordenar
-por peso las aristas de nuestro grafo, inicializar el set de soluciones y presentar el resultado
-
-En segundo lugar nuestra clase solución donde analizaremos los distintos set de soluciones y donde podremos
-agruparlos
+Para llevar un registro de que nodos ya se unieron, vimos que podemos tener conjuntos con únicos elementos (los nodos) al iniciar.
+A medida que una arista una dos nodos, estos conjuntos que los representan se unen.
+Este comportamiento está modelado en la clase *CONJUNTOS*. Sus funcionalidades son
+- Agregar un elemento: Se suma como un conjunto con un único elemento. No se agrega si el elemento ya existe en algun conjunto.
+- Conjunto único: Nos dice si tenemos un único conjunto (Los nodos se encuentran unidos)
+- Mismo conjunto: Nos dice si dos elementos pertenecen o no al mismo conjunto
+- Unir elementos: Une ambos conjuntos y elimina el innecesario para evitar duplicidades
 
 
 ### Salida
 
-Mostramos un ejemplo de 10 vértices, identificados por los valores 0-9. En los elementos de respuesta, la posición i en el vector indica el vértice al que hacemos referencia.
-Como salida obtendremos un único árbol cuyo costo sea menor al costo de cualquier otro árbol de recubrimiento para el grafo
+La salida por consola nos muestra un mensaje como el siguiente:
 ```shell
-[2021-02-22 00:22:35] [INFO   ] Las aristas que conforman la solución son: [(0:1) - 1, (1:2) - 10, (2:3) - 10]
+[2021-02-22 00:44:42] [INFO   ] Las aristas que conforman la solución son: [(1:2) - 1, (3:4) - 1, (0:5) - 2, (6:8) - 2, (0:1) - 3, (2:9) - 3, (4:5) - 3, (8:9) - 3, (5:7) - 5] 
 ```
+
+Podemos ver cada una de las aristas vinculadas con su peso. Todas estas aristas existen en nuestro grafo original, pero deben conformar un grafo de recorrido mínimo, sin ciclos y que cubra todos los nodos.
 
 --- 
 ### Dijsktra
