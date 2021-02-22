@@ -62,6 +62,8 @@ Dentro de esta clase, la nomenclatura de los métodos es ${algoritmo}GraphN(). D
 
 En caso de querer crear un nuevo grafo, se puede agregar a esta clase y llamarlo en la implementación del algoritmo en cuestión.
 
+> Hay tres grafos (uno para cada algoritmo) con una carga de nodos considerable, y sus diagramas pueden verse en el directorio `assets/graphs/{algoritmo}`
+
 ## Estructura general del proyecto
 Este proyecto utiliza la **consola** como interfaz del usuario. Al correr este mismo, se va a mostrar un menú con las distintas opciones de algoritmos a probar.
 
