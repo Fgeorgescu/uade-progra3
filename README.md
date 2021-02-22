@@ -17,7 +17,7 @@ Implementar 2 de los siguientes algoritmos:
 - Algoritmo de Floyd
 
 
-### Log level
+## Log level
 
 Se puede cambiar el log level para tener un mayor o menor feedback de lo que ocurre mientras se ejecuta el algoritmo.
 > Para cambiar el log level modificar las líneas 2 y 3 del archivo logging.properties en `src/main/resources`
@@ -29,7 +29,7 @@ Los niveles que recomendamos tener en cuenta son:
 - FINER: Muestra mucho más detalle. Esto se incluirá en loops que sean de una profundidad mayor (for dentro de un for, por ejemplo)
 - FINEST: Muestra TODO. **Usar bajo su propio riesgo...**
 
-#### Ejemplo de FINEST
+### Ejemplo de FINEST
 
 ```
 [2021-02-08 22:53:05] [FINEST ] Setteando como blanco y con predecesor -1 el nodo 1 
@@ -51,10 +51,19 @@ Los niveles que recomendamos tener en cuenta son:
 [2021-02-08 22:53:05] [FINE   ] Se inicia el método dfs recursivo para el nodo 1 
 ```
 
-## Estructura general del proyecto
-Este proyecto utiliza la consola como interfaz del usuario. Al correr el mismo, se va a mostrar un menú con las distintas opciones de algoritmos a probar.
+## GraphFractory
 
-Si bien intentamos unificar el estilo de los algoritmos para facilitar su lectura, se detalla más abajo (en cada uno de los subtitulos correspondientes) las peculariedades a tener en cuenta para cada uno de ellos.
+Si bien no es una implementación del patrón que indica, GraphFactory es una clase que engloba todos los grafos que instanciamos. 
+
+Dentro de esta clase, la nomenclatura de los métodos es ${algoritmo}GraphN(). Donde n es un valor numérico incremental.
+
+En caso de querer crear un nuevo grafo, se puede agregar a esta clase y llamarlo en la implementación del algoritmo en cuestión.
+
+## Estructura general del proyecto
+Este proyecto utiliza la **consola** como interfaz del usuario. Al correr este mismo, se va a mostrar un menú con las distintas opciones de algoritmos a probar.
+
+
+Si bien intentamos unificar el estilo de los algoritmos para facilitar su lectura, se detalla más abajo (en cada uno de los subtitulos correspondientes) las particularidades a tener en cuenta para cada uno de ellos, como la interpretación de la salida.
 
 A nivel general, cada algoritmo consta de una clase llamada como el algoritmo en cuestion, y tiene un método púbilco `.execute()`, el cual contiene la lógica inicial del mismo. Esto puede referirse a:
 - Selección del grafo a usar
@@ -70,7 +79,7 @@ A continuación detallamos la información relevante para los tres algoritmos qu
 Este algoritmo funciona para grafos dirigidos, conexos o no, con peso o no explorando
 recursivamente sus sucesores. Como parte del proceso declararemos una lógica trivaluada (Blanco, Gris y Negro).
 
-Al Ser un **DFS** este algoritmo podrá presentar un mismo grafo con distintos árboles de recorrido asociados
+Al ser un **DFS** este algoritmo podrá presentar un mismo grafo con distintos árboles de recorrido asociados
 
 > Con estas caracteristicas, soportamos la generación de grafos aleatorios 
 
@@ -142,16 +151,47 @@ Viendo un poco el ejemplo, podemos ver que:
 --- 
 ### Dijsktra
 
-#### Implementación de GrafoTDA
+#### Librería JGraphT
 
-Para esta implementación, utilizamos la librería JGraphT. Esta ofrece muchas funcionalidades, desde la creación de muchos tipos de grafos, hasta la visualización de los mismos por medio de un adapter de Swing. Por esta última funcionalidad decidimos desarrollar los grafos con esta librería. Nos permite, inclusive, mostrar el grafo en tiempo real mientras se crea e itera, pero requiere tiempo para poder implementarlo correctamente, por lo que queda en segundo plano.
+Para esta implementación, utilizamos la librería [JGraphT](!https://jgrapht.org/). Esta ofrece muchas funcionalidades, desde la creación de muchos tipos de grafos y maneras de recorrerlos, hasta la visualización de los mismos por medio de un adapter de Swing. 
 
-Nota: Esta librería ofrece muchas opciones para recorrer un grafo con muchas estrategias, como DFS o BFS. Vamos a **evitar** usar cualquiera de estas herramientas, para apegarnos lo más posible a las implementaciones vistas en clase. 
+> Por cuestiones de tiempo, no podemos implementar la visualización del grafo de una manera elegante, por lo que queda por fuera del scope del proyecto
 
-> Aún no implementamos la visualización del grafo
+Features principales de la librería:
+- Instanciamiento de grafos
+- Agregado de vértices y aristas de distintos tipos (Por ejemplo vértices etiquetados por un String y aristas dirigidas con peso)
+- Recorrido BFS gracias a un iterator. Este se usa en el problema de Dijkstra
 
-##### JGraph
+Para la implementación de Dijkstra, usaremos `SimpleDirectedWeightedGraph<String, DefaultWeightedEdge>`, el cual representa un grafo dirigido y con peso en sus aristas. Nos aseguramos que sea conexo cuando lo definimos.
 
-Como obtener el ppeso de una arista dados los vertices: `g.getEdgeWeight(g.getEdge("v1", "v2"))`
+#### Premisas
 
-Como Dijkstra soporta grafos conexos dirigidos y con peso, vamos a usar la estructura [estructura](!Docu) 
+De la formulación tenemos que `Sea G= (V,E) grafo dirigido y ponderado con costos no negativos en las aristas`. Asimismo, el grafo debe ser **conexo**.
+
+#### Variaciones
+
+El algoritmo soporta cambiar el nodo desde el cuales se comienza a calcular el peso de los caminos. Ya sea para modificar ese valor, o la estructura en general del grafo que quieran probar (ya hay 2 en código para usar), se puede modificar la clase Dijkstra.
+
+> El vértice de origen `source` debe existir en el grafo que usamos.
+
+
+#### Salida
+
+La salida se representa de esta manera
+
+```shell
+[2021-02-21 23:24:15] [INFO   ] Distancias acumuladas partiendo de v1: {v6=7.0, v7=5.0, v8=2.0, v1=0.0, v2=2.0, v3=5.0, v4=1.0, v5=8.0} 
+[2021-02-21 23:24:15] [INFO   ] v3 -> v6 
+[2021-02-21 23:24:15] [INFO   ] v2 -> v7 
+[2021-02-21 23:24:15] [INFO   ] v4 -> v8 
+[2021-02-21 23:24:15] [INFO   ] Origen: v1 
+[2021-02-21 23:24:15] [INFO   ] v1 -> v2 
+[2021-02-21 23:24:15] [INFO   ] v1 -> v3 
+[2021-02-21 23:24:15] [INFO   ] v1 -> v4 
+[2021-02-21 23:24:15] [INFO   ] v3 -> v5 
+```
+
+En la primera linea, vemos nuestro origen `v1` y los costos para llegar a los otros n vértices. Estos valores son el costo de recorrer todo el camino desde el origen hasta `vn`
+
+Luego, si bien está desordenado, podemos reconstruir el camino a recorrer. Siguiendo el ejemplo, vemos que nuestro origen es `v1`. Luego, vemos que de `v1` debemos ir hacia `v2, v3 y v4`. Los costos para llegar a esos nodos lo tenemos en el mapa anterior.
+Posterior a eso, podemos ver que del nodo `v3` se avanza hacia los nodos `v5 y v6`, etc.

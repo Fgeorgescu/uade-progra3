@@ -3,7 +3,7 @@ package TPO.kruskal;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Solucion<T> {
+public class Conjuntos<T> {
 
     private Set<Set<T>> conjuntos = new HashSet<>();
 
