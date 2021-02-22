@@ -51,7 +51,7 @@ public class Main {
             switch (opt) {
                 case 1 -> dfs.execute();
                 case 2 -> kruskal.execute();
-                case 3 -> dijkstra.execute("v1");
+                case 3 -> dijkstra.execute();
                 case 0 -> {}
                 case -1 -> System.out.println("Usá el nro de la opción como input, debe ser un int");
                 default -> System.out.println("Input inválido. Por favor usar el número de la opción");

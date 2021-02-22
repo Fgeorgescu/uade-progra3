@@ -4,6 +4,7 @@ import TPO.utils.GraphFactory;
 import TPO.utils.LoggerFactory;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultWeightedEdge;
+import org.jgrapht.traverse.BreadthFirstIterator;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -15,11 +16,19 @@ public class Dijsktra {
 
     private static final Logger logger = LoggerFactory.getLogger(Dijsktra.class.getSimpleName());
 
-    public void execute(String source) {
+    public void execute() {
+
         logger.info("Iniciamos la búsqueda del camino mínimo con Dijkstra");
-        Graph<String, DefaultWeightedEdge> stringGraph = GraphFactory.generateGraph1();
+        logger.info("Recuerde que puede cambiar el origen o en grafo tocando el código (Menú NTH)");
+
+        String source = "v1"; // Origen del algoritmo, debe existir en el grafo
+        // Grafo a usar, pueden ver assets/graphs/Dijkstra para buscar las imágenes
+        Graph<String, DefaultWeightedEdge> stringGraph = GraphFactory.dijkstraGraph2();
 
         logger.info("Tenemos el grafo: " + stringGraph.toString());
+
+        // Utilizamos el iterador de la librería JGraph para recorrer el grafo por un BFS
+        BreadthFirstIterator<String, DefaultWeightedEdge> iterator = new BreadthFirstIterator<>(stringGraph, source);
 
         Queue<String> q = new ArrayDeque<>();
 
@@ -31,17 +40,23 @@ public class Dijsktra {
         Set<String> verticesSet = stringGraph.vertexSet();
         logger.info("Los vertices son: " + verticesSet.toString());
 
-        verticesSet.forEach((vertice -> {
+        while (iterator.hasNext()) {
+            String vertice = iterator.next();
+            q.add(vertice);
+            distanciaAcumulada.put(vertice, INFINITO);
+            prev.put(vertice, DESCONOCIDO);
+        }
+        /*verticesSet.forEach((vertice -> {
             logger.finer("Agregamos " + vertice + " a la cola, y ponemos los valores -1 y \"\" en distancia y previo");
             q.add(vertice);
             distanciaAcumulada.put(vertice, INFINITO);
             prev.put(vertice, DESCONOCIDO);
-        }));
+        }));*/
+
 
         logger.info("Definimos la distancia a nuestro origen " + source + " como 0.0");
         distanciaAcumulada.replace(source, 0.0);
         prev.replace(source, "origen (" + source + ")");
-
 
         while (!q.isEmpty()) {
             String verticeActual = q.poll(); // gets the element and removes from queue
