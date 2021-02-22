@@ -90,7 +90,6 @@ public class DFS {
 
     }
 
-    //
     private void dfs(GrafosTDA g, int origen) {
         logger.fine(String.format("Se inicia el método dfs recursivo para el nodo %d", origen));
 
