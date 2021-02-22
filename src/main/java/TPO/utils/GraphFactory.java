@@ -133,20 +133,48 @@ public class GraphFactory {
         return g;
     }
 
-    /**
-     * Se numeran los vertices de 1 a MAX_DIM
-     * @param g
-     */
-    public static void randomizeGraph(GrafosTDA g) {
-        Random r = new Random();
+    public static GrafosTDA dfsGraph1() {
+        GrafoEstatico g = new GrafoEstatico();
+        g.inicializarGrafo(10);
 
-        g.inicializarGrafo(MAX_DIM);
-        for (int i = 0 ; i < MAX_DIM; i++) {
+        for (int i = 0 ; i < 10; i++) {
             g.agregarVertice(i);
         }
 
-        for ( int i = 0; i < RANDOMIZER_ITERATIONS ; i++) {
-            g.agregarArista(r.nextInt(MAX_DIM), r.nextInt(MAX_DIM),r.nextInt(MAX_WEIGTH));
-        }
+        // Origen 0
+        g.agregarArista(0,1,1);
+        g.agregarArista(0,2,1);
+
+        // Origen 1
+        g.agregarArista(1,3,1);
+        g.agregarArista(1,5,1);
+
+        // Origen 2
+        g.agregarArista(2,6,1);
+
+        // Origen 3
+        g.agregarArista(3,2,1);
+
+        // Origen 4
+        g.agregarArista(4,7,1);
+        g.agregarArista(4,8,1);
+
+        // Origen 5
+        g.agregarArista(5,4,1);
+
+        // Origen 6
+        g.agregarArista(6,9,1);
+
+        // Origen 7
+        g.agregarArista(7,6,1);
+        g.agregarArista(7,9,1);
+
+        // Origen 8
+        g.agregarArista(8,5,1);
+
+        // Origen 9
+        g.agregarArista(9,1,1);
+
+        return g;
     }
 }

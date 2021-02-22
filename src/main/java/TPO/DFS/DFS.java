@@ -2,6 +2,7 @@ package TPO.DFS;
 
 import TPO.graphImpl.GrafoEstatico; //Nos la dio el profe
 import TPO.graphImpl.GrafosTDA; //Nos la dio el profe
+import TPO.utils.GraphFactory;
 import TPO.utils.LoggerFactory; //La encontro Fran, arma el LOG
 
 import java.util.Arrays;
@@ -49,9 +50,7 @@ public class DFS {
         f = new int [MAX_DIM];
         t = 0;
 
-        GrafosTDA g = new GrafoEstatico();
-
-        randomizeGraph(g);
+        GrafosTDA g = GraphFactory.dfsGraph1();
 
         logger.info(String.format("Inicia el algoritmo con %d nodos", g.vertices().length));
 
