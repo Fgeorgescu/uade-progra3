@@ -160,7 +160,7 @@ Utiliza la técnica de Greedy, ya que busca ordenar de cara a seleccionar la ari
 dos árboles distintos.
 
 ### Implementación de GrafoTDA
-Para esta implementación, usamos GráficoEstático como en el caso DFS.
+Para esta implementación, usamos GráficoEstático como en el caso DFS. Esto es análogo a la matriz usada en DFS.
 
 La misma se basa en una matriz de adyacencia para registrar los vértices entre los nodos.
 
