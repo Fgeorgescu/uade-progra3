@@ -54,7 +54,7 @@ Los niveles que recomendamos tener en cuenta son:
 ## Estructura general del proyecto
 Este proyecto utiliza la consola como interfaz del usuario. Al correr el mismo, se va a mostrar un menú con las distintas opciones de algoritmos a probar.
 
-Si bien intentamos unificar el estilo de los algoritmos para facilitar su lectura, se detalla más abajo (en cada uno de los subtitulos correspondientes) las pequiliaridades a tener en cuenta para cada uno de ellos.
+Si bien intentamos unificar el estilo de los algoritmos para facilitar su lectura, se detalla más abajo (en cada uno de los subtitulos correspondientes) las peculariedades a tener en cuenta para cada uno de ellos.
 
 A nivel general, cada algoritmo consta de una clase llamada como el algoritmo en cuestion, y tiene un método púbilco `.execute()`, el cual contiene la lógica inicial del mismo. Esto puede referirse a:
 - Selección del grafo a usar
@@ -67,9 +67,12 @@ A continuación detallamos la información relevante para los tres algoritmos qu
 ## DFS
 
 ### Premisas
-Este algoritmo funciona para grafos dirigidos, conexos o no, con peso o no.
+Este algoritmo funciona para grafos dirigidos, conexos o no, con peso o no explorando
+recursivamente sus sucesores. Como parte del proceso declararemos una lógica trivaluada (Blanco, Gris y Negro).
 
-> Con estas caracteristicas, soportamos la generación de grafos aleatorios
+Al Ser un **DFS** este algoritmo podrá presentar un mismo grafo con distintos árboles de recorrido asociados
+
+> Con estas caracteristicas, soportamos la generación de grafos aleatorios 
 
 ### Implementación de GrafoTDA
 
@@ -77,7 +80,7 @@ Para esta implementación, usamos GráficoEstático. La misma se basa en una mat
 
 A continuación dejamos un ejemplo de una de estas matrices, como se vería en consola. 
 
->Las aristas se representan con numeros distintos a 0. Si bien esto puede representar un peso, como no es necesario para este algoritmo, **tomamos que un valor != 0 es una arista existente**, indistintamente del valor.
+>Observación: Las aristas se representan con numeros distintos a 0. Si bien esto puede representar un peso, como no es necesario para este algoritmo, **tomamos que un valor != 0 es una arista existente**, indistintamente del valor.
 
 Siguiendo ese razonamiento, el nodo 0 será adyacente consigo 1, 3 y 9. Sin embargo, no existe arista que conecte 9 con 0.
 ```
@@ -115,8 +118,8 @@ Constantes:
 
 ### Salida
 
-Mostramos un ejemplo de 10 vértices, identificados por los valores 0...9. En los elementos de respuesta, la posición i en el vector indica el vertice al que hacemos referencia
-
+Mostramos un ejemplo de 10 vértices, identificados por los valores 0-9. En los elementos de respuesta, la posición i en el vector indica el vertice al que hacemos referencia.
+Una vez recorridos todos los NODOS podremos conocer los predecesores, y en caso de que no sea conexo nos permite detectar componentes conexos.
 ```shell
 [2021-02-19 14:09:46] [INFO   ] Se analizaron todos los nodos, acá están los resultados: 
 [2021-02-19 14:09:46] [INFO   ] Predecesores = [-1, 0, 1, 7, 6, 2, 7, 5, 4, 0] 
