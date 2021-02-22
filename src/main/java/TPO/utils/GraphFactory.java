@@ -114,21 +114,47 @@ public class GraphFactory {
         return g;
     }
 
-    public static GrafoEstatico generarGrafoTDA1() {
-        final int dim = 4;
+    public static GrafoEstatico kruskalGraph1() {
         GrafoEstatico g = new GrafoEstatico();
-        g.inicializarGrafo(dim);
+        g.inicializarGrafo(10);
 
-        for (int i = 0 ; i < dim; i++) {
+        for (int i = 0 ; i < 10; i++) {
             g.agregarVertice(i);
         }
 
-        g.agregarArista(0,1,10);
-        g.agregarArista(0,1,1);
-        g.agregarArista(1,0,10);
-        g.agregarArista(1,2,10);
-        g.agregarArista(2,3,10);
-        g.agregarArista(3,0,10);
+        // Como son sin dirección, solo agregamos una. Para ser ordenados, v1 < v2 siempre que agregamos una arista
+        // Origen 0
+        g.agregarArista(0,1,3);
+        g.agregarArista(0,5,2);
+        g.agregarArista(0,6,5);
+
+        // Origen 1
+        g.agregarArista(1,2,1);
+        g.agregarArista(1,7,10);
+
+        // Origen 2
+        g.agregarArista(2,9,3);
+
+        // Origen 3
+        g.agregarArista(3,4,1);
+        g.agregarArista(3,5,6);
+
+        // Origen 4
+        g.agregarArista(4,5,3);
+
+        // Origen 5
+        g.agregarArista(5,7,5);
+
+        // Origen 6
+        g.agregarArista(6,8,2);
+
+        // Origen 7
+        g.agregarArista(7,8,10);
+
+        // Origen 8
+        g.agregarArista(8,9,3);
+
+        // Origen 9
 
         return g;
     }

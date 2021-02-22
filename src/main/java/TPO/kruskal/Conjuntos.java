@@ -1,17 +1,19 @@
 package TPO.kruskal;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Conjuntos<T> {
 
-    private Set<Set<T>> conjuntos = new HashSet<>();
+    private List<Set<T>> conjuntos = new ArrayList<>(); // Usamos una List<Set<>> en lugar de un Set<Set<>> Pues el set no hace correctamente el remove en algunos casos, sospecho que por el equals
 
-    public Set<Set<T>> getConjuntos() {
+    public List<Set<T>> getConjuntos() {
         return conjuntos;
     }
 
-    public Set<Set<T>> add(T elemento) {
+    public List<Set<T>> add(T elemento) {
         // Si el elemento está en un set de solución, no lo agrego
         for(Set<T> set : conjuntos) {
             if (set.contains(elemento)) {
@@ -54,8 +56,8 @@ public class Conjuntos<T> {
         }
 
         // Uno y borro el set extra
-        set1.addAll(set2);
         conjuntos.remove(set2);
+        set1.addAll(set2);
         return true;
     }
 

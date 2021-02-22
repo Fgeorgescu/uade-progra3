@@ -2,6 +2,7 @@ package TPO.graphImpl;
 
 import TPO.utils.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -200,7 +201,7 @@ public class GrafoEstatico implements GrafosTDA {
 	}
 
 	public List<Arista> aristas() { // O(n^2)
-		List<Arista> aristas = new LinkedList<>();
+		List<Arista> aristas = new ArrayList<>();
 
 		for (int i = 0; i < matrizAdy.length ; i ++) {
 			for (int j = 0; j < matrizAdy[i].length ; j ++) {

@@ -16,9 +16,8 @@ public class Kruskal {
         logger.info("Iniciamos la ejecución del algoritmo de Kruskal.");
 
         List<String> aristasSolucion = new ArrayList<>();
-        List<Integer> peso = new ArrayList<>();
 
-        GrafoEstatico g = GraphFactory.generarGrafoTDA1();
+        GrafoEstatico g = GraphFactory.kruskalGraph1();
         logger.finer("Grafo generado");
 
         logger.finer("Inicializamos el set de soluciones");

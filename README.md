@@ -130,18 +130,22 @@ Constantes:
 Mostramos un ejemplo de 10 vértices, identificados por los valores 0-9. En los elementos de respuesta, la posición i en el vector indica el vertice al que hacemos referencia.
 Una vez recorridos todos los NODOS podremos conocer los predecesores, y en caso de que no sea conexo nos permite detectar componentes conexos.
 ```shell
-[2021-02-19 14:09:46] [INFO   ] Se analizaron todos los nodos, acá están los resultados: 
-[2021-02-19 14:09:46] [INFO   ] Predecesores = [-1, 0, 1, 7, 6, 2, 7, 5, 4, 0] 
-[2021-02-19 14:09:46] [INFO   ] d? = [1, 2, 3, 6, 9, 4, 8, 5, 10, 18] 
-[2021-02-19 14:09:46] [INFO   ] t? = [20, 17, 16, 7, 12, 15, 13, 14, 11, 19] 
+[2021-02-22 00:05:31] [INFO   ] Origen: 0 
+[2021-02-22 00:05:31] [INFO   ] 0 -> 1 
+[2021-02-22 00:05:31] [INFO   ] 3 -> 2 
+[2021-02-22 00:05:31] [INFO   ] 1 -> 3 
+[2021-02-22 00:05:31] [INFO   ] 5 -> 4 
+[2021-02-22 00:05:31] [INFO   ] 1 -> 5 
+[2021-02-22 00:05:31] [INFO   ] 2 -> 6 
+[2021-02-22 00:05:31] [INFO   ] 4 -> 7 
+[2021-02-22 00:05:31] [INFO   ] 4 -> 8 
+[2021-02-22 00:05:31] [INFO   ] 6 -> 9 
+[2021-02-22 00:05:31] [INFO   ] Tiempos iniciales de procesamiento de un nodo = [1, 2, 4, 3, 12, 11, 5, 13, 15, 6] 
+[2021-02-22 00:05:31] [INFO   ] Tiempos de final de procesamiento de un nodo = [20, 19, 9, 10, 17, 18, 8, 14, 16, 7] 
 ```
-- Predecesores: Array de predecesores. El elemento [i] representa el ID del elemento predecesor. 
+- Predecesores: Se indica el origen y cada una de las aristas por medio del origen y el destino. 
 - d: Tiempo final de la iteración. Nos sirve para validar la recursividad. 
 - t: Tiempo final de la iteración. Nos sirve para validar la recursividad
-
-Viendo un poco el ejemplo, podemos ver que:
-- 0 -> 1 -> 2 -> 5 -> 7
-- 3 -> 7 -> 6 -> 4 -> 8
 
 --- 
 ### Kruskal
