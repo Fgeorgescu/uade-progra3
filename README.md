@@ -144,9 +144,38 @@ Viendo un poco el ejemplo, podemos ver que:
 - 3 -> 7 -> 6 -> 4 -> 8
 
 --- 
+
 ### Kruskal
 
-#### Implementación de GrafoTDA
+### Premisas
+Este algoritmo funciona para grafos no dirigidos, conexos y ponderados.
+Utiliza la técnica de Greedy, ya que busca ordenar de cara a seleccionar la arista de mínimo costo que conecta
+dos árboles distintos.
+
+### Implementación de GrafoTDA
+Para esta implementación, usamos GráficoEstático como en el caso DFS.
+
+La misma se basa en una matriz de adyacencia para registrar los vértices entre los nodos.
+
+
+### Configuración
+
+Podremos encontrar dos clases para trabajar el algoritmo de Kruskal
+
+En primer lugar la clase Kruskal donde inicializaremos la ejecución del algoritmo, y podremos ordenar
+por peso las aristas de nuestro grafo, inicializar el set de soluciones y presentar el resultado
+
+En segundo lugar nuestra clase solución donde analizaremos los distintos set de soluciones y donde podremos
+agruparlos
+
+
+### Salida
+
+Mostramos un ejemplo de 10 vértices, identificados por los valores 0-9. En los elementos de respuesta, la posición i en el vector indica el vértice al que hacemos referencia.
+Como salida obtendremos un único árbol cuyo costo sea menor al costo de cualquier otro árbol de recubrimiento para el grafo
+```shell
+[2021-02-22 00:22:35] [INFO   ] Las aristas que conforman la solución son: [(0:1) - 1, (1:2) - 10, (2:3) - 10]
+```
 
 --- 
 ### Dijsktra
