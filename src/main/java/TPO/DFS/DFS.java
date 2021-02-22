@@ -1,8 +1,8 @@
 package TPO.DFS;
 
-import TPO.graphImpl.GrafoEstatico;
-import TPO.graphImpl.GrafosTDA;
-import TPO.utils.LoggerFactory;
+import TPO.graphImpl.GrafoEstatico; //Nos la dio el profe
+import TPO.graphImpl.GrafosTDA; //Nos la dio el profe
+import TPO.utils.LoggerFactory; //La encontro Fran, arma el LOG
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,8 +26,8 @@ public class DFS {
     private final int NEGRO = 2;
 
     private int[] marcas = new int[MAX_DIM];
-    //private int[] p = new int [MAX_DIM];
-    Map<Integer, Integer> p = new HashMap<>();
+
+  Map<Integer, Integer> p = new HashMap<>();
     private int[] d = new int [MAX_DIM];
     private int[] f = new int [MAX_DIM];
     private int t = 0;
@@ -38,7 +38,7 @@ public class DFS {
     public DFS(int MAX_DIM, int MAX_WEIGTH, int RANDOMIZER_ITERATIONS) {
         this.MAX_DIM = MAX_DIM;
         this.MAX_WEIGTH = MAX_WEIGTH;
-        this.RANDOMIZER_ITERATIONS = RANDOMIZER_ITERATIONS;
+        this.RANDOMIZER_ITERATIONS = RANDOMIZER_ITERATIONS; // Este metodo en valores al azar mete pesos al azar
     }
 
     public void execute() {
@@ -59,13 +59,13 @@ public class DFS {
         logger.info("Mostramos la matriz: ");
         g.mostrarMatriz();
         try { // Sleep para que se imprima la matriz en consola
-            sleep(100);
+            sleep(100); //congela ejecución del codigo 100 milisegundos
         } catch (InterruptedException e) {
             e.printStackTrace(); //No debería romper
         }
 
         // Marcamos todos los nodos como BLANCO, y dejamos como -1 todos los predecesores
-        for( int i = 0; i < g.vertices().length; i++) {
+        for( int i = 0; i < g.vertices().length; i++) { //g.vertices te devuelve los vertices con length por tamaño
             logger.finest(String.format("Setteando como blanco y con predecesor -1 el nodo %d", i));
             marcas[i] = BLANCO;
             p.put(i, -1);
@@ -76,7 +76,7 @@ public class DFS {
             logger.finest(String.format("Analizando el nodo %d en el loop de dfs forest", i));
             if (marcas[i] == BLANCO) {
                 logger.fine(String.format("El nodo %d es BLANCO, vamos a profundizar el mismo. Llamando al método DFS", i));
-                dfs(g, i);
+                dfs(g, i); //Recursivo
             }
         }
 
@@ -95,7 +95,7 @@ public class DFS {
     private void dfs(GrafosTDA g, int origen) {
         logger.fine(String.format("Se inicia el método dfs recursivo para el nodo %d", origen));
 
-        t++;
+        t++; //sumo el tiempo arranca en cero
         d[origen] = t;
         marcas[origen] = GRIS;
 
